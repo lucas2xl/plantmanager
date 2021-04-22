@@ -9,7 +9,7 @@ export const Container = styled.SafeAreaView`
   flex: 1;
 `;
 
-export const Warper = styled.View`
+export const Wrapper = styled.View`
  flex: 1;
   align-items: center;
   justify-content: space-around;

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Warper, Title, Image, SubTitle, Touchable } from './styles';
+import { Container, Wrapper, Title, Image, SubTitle, Touchable } from './styles';
 import { Feather } from '@expo/vector-icons';
 
 import watering from '../../assets/watering.png';
@@ -19,14 +19,14 @@ const Welcome = () => {
 
   return (
     <Container>
-      <Warper>
+      <Wrapper>
         <Title>{title}</Title>
         <Image source={watering} resizeMode={'contain'} />
         <SubTitle>{subTitle}</SubTitle>
         <Touchable onPress={handleStart}>
           <Feather name={'chevron-right'} color={Colors.white} size={32} />
         </Touchable>
-      </Warper>
+      </Wrapper>
     </Container>
   );
 };

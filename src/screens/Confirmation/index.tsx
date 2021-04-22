@@ -1,15 +1,20 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useNavigation } from '@react-navigation/core';
 import { Container, Content, Emoji, Title, SubTitle, Footer } from './styles';
 
 import Button from '../../components/Button';
-import { Platform } from 'react-native';
 
 const Confirmation = () => {
+  const navigation = useNavigation();
+
   const title = 'Prontinho';
   const subTitle =
     ' Agora vamos começar a cuidar das suas plantinhas com muito cuidado.';
   const buttonText = 'Começar';
 
+  const handleMoveOn = () => {
+    navigation.navigate('PlantSelect')
+  }
   return (
     <Container>
       <Content>
@@ -17,7 +22,10 @@ const Confirmation = () => {
         <Title>{title}</Title>
         <SubTitle>{subTitle}</SubTitle>
         <Footer>
-          <Button title={buttonText} />
+          <Button 
+            title={buttonText}
+            onPress={handleMoveOn}
+          />
         </Footer>
       </Content>
     </Container>
