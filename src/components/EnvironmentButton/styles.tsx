@@ -15,7 +15,7 @@ export const Button = styled(({isActive, ...rest}) => <RectButton {...rest}/>)`
   align-items: center;
   border-radius: 12px;
   background-color: ${({isActive}) => isActive ? Colors.green_light : Colors.shape};
-  margin: 0 5px;
+  margin: 0px 5px;
 `;
 
 
