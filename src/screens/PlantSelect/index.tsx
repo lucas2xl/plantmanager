@@ -44,9 +44,8 @@ const PlantSelect = () => {
 
   const [page, setPage] = useState(1);
   const [loadingMore, setLoadingMore] = useState(false);
-  const [loadedAll, setLoadedAll] = useState(false);
 
-  const titleStrong = 'Em qual hambiente';
+  const titleStrong = 'Em qual ambiente';
   const title = 'você quer colocar sua planta?';
 
   const fetchEnvironment = async () => {
@@ -124,6 +123,7 @@ const PlantSelect = () => {
       </Wrapper>
       <WrapperFlatListHorizontal>
         <FlatList
+          keyExtractor={(item) => String(item.key)}
           contentContainerStyle={styles.flatListHorizontal}
           horizontal
           showsHorizontalScrollIndicator={false}
@@ -140,8 +140,7 @@ const PlantSelect = () => {
 
       <WrapperFlatListVertical>
         <FlatList
-          data={filteredPlants}
-          renderItem={({ item }) => <PlantCardPrimary data={item} />}
+          keyExtractor={(item) => String(item.id)}
           showsVerticalScrollIndicator={false}
           numColumns={2}
           onEndReachedThreshold={0.1}
@@ -151,6 +150,8 @@ const PlantSelect = () => {
           ListFooterComponent={
             loadingMore ? <ActivityIndicator color={Colors.green} /> : <></>
           }
+          data={filteredPlants}
+          renderItem={({ item }) => <PlantCardPrimary data={item} />}
         />
       </WrapperFlatListVertical>
     </SafeAreaView>

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { TouchableWithoutFeedback, Keyboard } from 'react-native';
+import { TouchableWithoutFeedback, Keyboard, Platform } from 'react-native';
 import { useNavigation } from '@react-navigation/core';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
   Container,
   KeyboardAvoidingView,
@@ -13,7 +14,6 @@ import {
 } from './styles';
 
 import Button from '../../components/Button';
-import { Platform } from 'react-native';
 
 const UserIdentification = () => {
   const [isFocused, setIsFocused] = useState(false);
@@ -40,7 +40,12 @@ const UserIdentification = () => {
     setName(value);
   };
 
-  const handleConfirmation = () => {
+  const handleSubmit = async() => {
+    if(!name){
+      return;
+    }
+    
+    await AsyncStorage.setItem('@plantmanager:user', name);
     navigation.navigate('Confirmation');
   };
 
@@ -64,7 +69,12 @@ const UserIdentification = () => {
               value={name}
             />
             <Footer>
-              <Button title={buttonText} onPress={handleConfirmation} />
+              <Button
+                title={buttonText}
+                onPress={handleSubmit}
+                isDisabled={!name}
+                disabled={!name}
+              />
             </Footer>
           </Form>
         </TouchableWithoutFeedback>
