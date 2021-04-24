@@ -1,24 +1,41 @@
 import React from 'react';
-import { useNavigation } from '@react-navigation/core';
+import { useNavigation, useRoute } from '@react-navigation/core';
 import { Container, Content, Emoji, Title, SubTitle, Footer } from './styles';
 
 import Button from '../../components/Button';
 
-const Confirmation = () => {
-  const navigation = useNavigation();
+interface IParams {
+  title: string;
+  subTitle: string;
+  buttonText: string;
+  icon: 'smile' | 'hug';
+  nextScreen: string;
+};
 
-  const title = 'Prontinho';
-  const subTitle =
-    ' Agora vamos começar a cuidar das suas plantinhas com muito cuidado.';
-  const buttonText = 'Começar';
+const emojis = {
+  hug: '🤗',
+  smile: '😄'
+}
+
+const Confirmation = ({}) => {
+  const navigation = useNavigation();
+  const routes = useRoute();
+
+  const {
+    title,
+    subTitle,
+    buttonText,
+    icon,
+    nextScreen
+  } = routes.params as IParams;
 
   const handleMoveOn = () => {
-    navigation.navigate('PlantSelect')
+    navigation.navigate(nextScreen)
   }
   return (
     <Container>
       <Content>
-        <Emoji>😄</Emoji>
+        <Emoji>{emojis[icon]}</Emoji>
         <Title>{title}</Title>
         <SubTitle>{subTitle}</SubTitle>
         <Footer>

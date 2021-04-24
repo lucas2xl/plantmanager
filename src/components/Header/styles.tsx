@@ -24,7 +24,7 @@ export const Text = styled.Text`
 
 export const Strong = styled.Text`
   font-family: ${Fonts.heading};
-  line-height: 32px;
+  line-height: 34px;
 `; 
 
 export const ImageProfile = styled.Image`

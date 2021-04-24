@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { TouchableWithoutFeedback, Keyboard, Platform } from 'react-native';
+import { TouchableWithoutFeedback, Keyboard, Platform, Alert } from 'react-native';
 import { useNavigation } from '@react-navigation/core';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
@@ -25,6 +25,7 @@ const UserIdentification = () => {
   const title = 'Como podemos\nchamar você?';
   const buttonText = 'Confirmar';
   const placeholder = 'Digite um nome';
+  const alert = 'Não foi possivel salvar o nome do usuário 😢';
 
   const handleInputBlur = () => {
     setIsFocused(false);
@@ -45,8 +46,19 @@ const UserIdentification = () => {
       return;
     }
     
-    await AsyncStorage.setItem('@plantmanager:user', name);
-    navigation.navigate('Confirmation');
+    try{
+      await AsyncStorage.setItem('@plantmanager:user', name);
+      navigation.navigate('Confirmation', {
+        title: 'Prontinho',
+        subTitle: 'Agora vamos começar a cuidar das suas plantinhas com muito cuidado.',
+        buttonText: 'Começar',
+        icon: 'smile',
+        nextScreen: 'PlantSelect',
+      });
+
+    }catch {
+      Alert.alert(alert)
+    }
   };
 
   return (

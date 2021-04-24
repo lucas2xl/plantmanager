@@ -15,6 +15,7 @@ export const styles = StyleSheet.create({
 export const SafeAreaView = styled.View`
   flex: 1;
   margin-top: 20px;
+  background-color: ${Colors.white}
 `;
 
 export const Wrapper = styled.View`

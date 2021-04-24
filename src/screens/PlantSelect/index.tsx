@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { FlatList, ActivityIndicator } from 'react-native';
+import { useNavigation } from '@react-navigation/core';
 import {
   styles,
   SafeAreaView,
@@ -11,29 +12,18 @@ import {
 } from './styles';
 import api from '../../services/api';
 
+import { IPlantProps } from '../../libs/storage';
+import Colors from '../../styles/Colors';
 import Header from '../../components/Header';
 import EnvironmentButton from '../../components/EnvironmentButton';
 import PlantCardPrimary from '../../components/PlantCardPrimary';
 import Load from '../../components/Load';
-import Colors from '../../styles/Colors';
 
 interface IEnvironmentsProps {
   key: string;
   title: string;
 }
 
-interface IPlantProps {
-  id: number;
-  name: string;
-  about: string;
-  water_tips: string;
-  photo: string;
-  environments: [string];
-  frequency: {
-    times: number;
-    repeat_every: string;
-  };
-}
 
 const PlantSelect = () => {
   const [environments, setEnvironments] = useState<IEnvironmentsProps[]>([]);
@@ -44,6 +34,8 @@ const PlantSelect = () => {
 
   const [page, setPage] = useState(1);
   const [loadingMore, setLoadingMore] = useState(false);
+
+  const navigation = useNavigation();
 
   const titleStrong = 'Em qual ambiente';
   const title = 'você quer colocar sua planta?';
@@ -103,6 +95,10 @@ const PlantSelect = () => {
     fetchPlants();
   };
 
+  const handlePlantSelect = (plant: IPlantProps) => {
+    navigation.navigate('PlantSave', {plant})
+  };
+
   useEffect(() => {
     fetchEnvironment();
   }, []);
@@ -151,7 +147,12 @@ const PlantSelect = () => {
             loadingMore ? <ActivityIndicator color={Colors.green} /> : <></>
           }
           data={filteredPlants}
-          renderItem={({ item }) => <PlantCardPrimary data={item} />}
+          renderItem={({ item }) => (
+            <PlantCardPrimary
+              data={item}
+              onPress={() => handlePlantSelect(item, )}
+            />
+          )}
         />
       </WrapperFlatListVertical>
     </SafeAreaView>
