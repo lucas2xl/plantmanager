@@ -39,3 +39,22 @@ export const Time = styled.Text`
   font-family: ${Fonts.heading};
   color: ${Colors.body_dark};
 `;
+
+// Swipeble
+
+export const ViewAnimated = styled.View`
+  justify-content: center;
+  align-items: center;
+  width: 40%;
+  border-radius: 20px;
+  background-color: ${Colors.red};
+  height: 100px;
+  margin-top: 5px;
+`;
+
+export const ButtonRemove = styled(({ ...rest }) => <RectButton {...rest} />)`
+  width: 100%;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+`;

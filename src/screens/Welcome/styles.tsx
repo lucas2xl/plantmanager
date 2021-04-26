@@ -19,7 +19,6 @@ export const Wrapper = styled.View`
 export const Title = styled.Text`
   color: ${Colors.heading};
   font-size: 28px;
-  font-weight: bold;
   text-align: center;
   margin-top: 38px;
   font-family: ${Fonts.heading};

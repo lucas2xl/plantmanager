@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { SvgFromUri } from 'react-native-svg';
 import {
+  styles,
   Container,
   PlantInfo,
   PlantName,
@@ -15,9 +16,9 @@ import {
 } from './styles';
 import DateTimerPicker, { Event } from '@react-native-community/datetimepicker';
 import { useNavigation, useRoute } from '@react-navigation/core';
-import { Alert, Platform } from 'react-native';
-import { format, isBefore } from 'date-fns';
-import { IPlantProps, loadPlant, savePlant } from '../../libs/storage';
+import { Alert, Platform, ScrollView } from 'react-native';
+import { format } from 'date-fns';
+import { IPlantProps, savePlant } from '../../libs/storage';
 
 import waterDrop from '../../assets/waterdrop.png';
 import Button from '../../components/Button';
@@ -61,57 +62,60 @@ const PlantSave = () => {
     setShowDatePicker(!showDatePicker);
   };
 
-  const handlePlantSave = async() => {
+  const handlePlantSave = async () => {
     try {
       await savePlant({
         ...plant,
-        dateTimeNotification: selectedDateTime
+        dateTimeNotification: selectedDateTime,
       });
 
       navigation.navigate('Confirmation', {
         title: 'Tudo certo',
-        subTitle: 'Fique tranquilo que sempre vamos lembrar você de cuidar da sua plantinha com bastante amor.',
+        subTitle:
+          'Fique tranquilo que sempre vamos lembrar você de cuidar da sua plantinha com bastante amor.',
         buttonText: 'Muito obrigado :D',
         icon: 'hug',
         nextScreen: 'MyPlants',
       });
-
     } catch {
       return Alert.alert(alertText.savingError);
     }
   };
 
-
   return (
-    <Container>
-      <PlantInfo>
-        <SvgFromUri uri={plant.photo} height={150} width={150} />
-        <PlantName>{plant.name}</PlantName>
-        <AboutPlant>{plant.about}</AboutPlant>
-      </PlantInfo>
-      <Controller>
-        <TipController>
-          <TipImage source={waterDrop} />
-          <TipText>{plant.water_tips}</TipText>
-        </TipController>
-        <AlertLabel>{alertLabel}</AlertLabel>
+    <ScrollView
+      showsVerticalScrollIndicator={false}
+      contentContainerStyle={styles.scrollView}>
+      <Container>
+        <PlantInfo>
+          <SvgFromUri uri={plant.photo} height={150} width={150} />
+          <PlantName>{plant.name}</PlantName>
+          <AboutPlant>{plant.about}</AboutPlant>
+        </PlantInfo>
+        <Controller>
+          <TipController>
+            <TipImage source={waterDrop} />
+            <TipText>{plant.water_tips}</TipText>
+          </TipController>
+          <AlertLabel>{alertLabel}</AlertLabel>
 
-        {showDatePicker && (
-          <DateTimerPicker
-            value={selectedDateTime}
-            mode={'time'}
-            display={'spinner'}
-            onChange={handleChangeTimer}
-          />
-        )}
-        {Platform.OS === 'android' && (
-          <DateTimerPickerButton onPress={handleOpenDateTimePickerForAndroid}>
-            <DateTimerPickerText>{dateTimerPickerText}</DateTimerPickerText>
-          </DateTimerPickerButton>
-        )}
-        <Button title={buttonTitle} onPress={handlePlantSave} />
-      </Controller>
-    </Container>
+          {showDatePicker && (
+            <DateTimerPicker
+              value={selectedDateTime}
+              mode={'time'}
+              display={'spinner'}
+              onChange={handleChangeTimer}
+            />
+          )}
+          {Platform.OS === 'android' && (
+            <DateTimerPickerButton onPress={handleOpenDateTimePickerForAndroid}>
+              <DateTimerPickerText>{dateTimerPickerText}</DateTimerPickerText>
+            </DateTimerPickerButton>
+          )}
+          <Button title={buttonTitle} onPress={handlePlantSave} />
+        </Controller>
+      </Container>
+    </ScrollView>
   );
 };
 

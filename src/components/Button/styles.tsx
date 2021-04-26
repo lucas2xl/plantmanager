@@ -4,11 +4,9 @@ import styled from 'styled-components/native';
 import Colors from '../../styles/Colors';
 import Fonts from '../../styles/Fonts';
 
-export const Touchable = styled(({ isDisabled, ...rest }) => (
-  <TouchableOpacity {...rest} />
-))`
+export const Touchable = styled(({ isDisabled, ...rest }) => (<TouchableOpacity {...rest} />))`
   background-color: ${(props) =>
-    props.isDisabled ? Colors.green_light : Colors.green};
+props.isDisabled ? Colors.green_light : Colors.green};
   height: 56px;
   border-radius: 16px;
   justify-content: center;
