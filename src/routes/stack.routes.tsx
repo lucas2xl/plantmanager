@@ -13,39 +13,23 @@ import AuthRoutes from './tab.routes';
 const stackRoutes = createStackNavigator();
 
 const StackRoutes: React.FC = () => (
-  <stackRoutes.Navigator
-    headerMode={'none'}
-    screenOptions={{
-      cardStyle: {
-        backgroundColor: Colors.white
-      },
-    }}
-  >
-    <stackRoutes.Screen
-      name={'Welcome'}
-      component={Welcome}
-    />
-    <stackRoutes.Screen
-      name={'UserIdentification'}
-      component={UserIdentification}
-    />
-    <stackRoutes.Screen
-      name={'Confirmation'}
-      component={Confirmation}
-    />
-    <stackRoutes.Screen
-      name={'PlantSelect'}
-      component={AuthRoutes}
-    />
-    <stackRoutes.Screen
-      name={'PlantSave'}
-      component={PlantSave}
-    />
-    <stackRoutes.Screen
-      name={'MyPlants'}
-      component={AuthRoutes}
-    />
-  </stackRoutes.Navigator>
-)
+    <stackRoutes.Navigator
+      headerMode={'none'}
+      screenOptions={{
+        cardStyle: {
+          backgroundColor: Colors.white,
+        },
+      }}>
+      <stackRoutes.Screen name={'Welcome'} component={Welcome} />
+      <stackRoutes.Screen
+        name={'UserIdentification'}
+        component={UserIdentification}
+      />
+      <stackRoutes.Screen name={'Confirmation'} component={Confirmation} />
+      <stackRoutes.Screen name={'PlantSelect'} component={AuthRoutes} />
+      <stackRoutes.Screen name={'PlantSave'} component={PlantSave} />
+      <stackRoutes.Screen name={'MyPlants'} component={AuthRoutes} />
+    </stackRoutes.Navigator>
+);
 
 export default StackRoutes;

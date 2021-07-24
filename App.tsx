@@ -17,14 +17,12 @@ const App = () => {
   });
 
   useEffect(() => {
-    console.log('passei aqui')
     const subscription = Notification.addNotificationReceivedListener(
       (notification) => {
         const data = notification.request.content.data.plant as IPlantProps;
         console.log(data);
       },
     );
-      console.log(subscription)
     return () => subscription.remove();
   }, []);
 

@@ -29,7 +29,6 @@ const PlantCardSecondary: React.FC<IPlantProps> = ({
   ...rest
 }) => {
   const timeLabel = 'Regas às';
-  Feather;
   return (
     <Swipeable
       overshootRight={false}
