@@ -10,20 +10,20 @@
   <a href="#rocket-technologies">Technologies</a>
 </p>
 
-![App Screenshot](src/assets/image0.png) ![App Screenshot](src/assets/image1.png) ![App Screenshot](src/assets/image2.png)
+<p align="center">
+  <img src="src/assets/image0.png" width="100" />
+  <img src="src/assets/image1.png" width="100" /> 
+  <img src="src/assets/image2.png" width="100" />
+</p>
 
 
 ## :rocket: Technologies
 
-- [ReactJS](https://reactjs.org/)
+- [React-native](https://reactnative.dev/)
 - [Typescript](https://www.typescriptlang.org)
 - [styled-components](https://www.styled-components.com/)
-- [gsap](https://greensock.com/gsap/)
+- [lottie](https://github.com/lottie-react-native/lottie-react-native)
 
 ---
 
 Made with ♥ by Lucas Aguiar :wave: [Get in touch!](https://www.linkedin.com/in/lucasaguiiar)
-
-# plantmanager
-
-#5 NLW Rocketseat
